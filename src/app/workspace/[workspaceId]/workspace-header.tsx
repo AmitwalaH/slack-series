@@ -28,7 +28,7 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
                         className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
                         size="sm"
                     >
-                        {workspace.name}
+                        {workspace.name.toUpperCase()}
                         <ChevronDown className="size-4 ml-1 shrink-0" />
                     </Button>
                 </DropdownMenuTrigger>
