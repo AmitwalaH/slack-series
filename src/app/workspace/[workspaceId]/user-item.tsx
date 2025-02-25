@@ -1,14 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Id } from "../../../../convex/_generated/dataModel";
+import Link from "next/link";
 import { cva, VariantProps } from "class-variance-authority";
+
 import { cn } from "@/lib/utils";
-import { Link } from "lucide-react";
-import WorkspaceIdLayout from "./layout";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useworkspaceId } from "@/hooks/use-workspace-id";
 
+import { Id } from "../../../../convex/_generated/dataModel";
+
 const UserItemVarients = cva(
-    "flex item-center gap-1.5 justify-start font-normal h-7 px-4 text-sm overflow-hidden",
+    "flex items-center gap-1.5 justify-start font-normal h-7 px-4 text-sm overflow-hidden",
     {
         variants: {
             variant: {

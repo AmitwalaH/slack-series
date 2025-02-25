@@ -5,13 +5,12 @@ import { Id } from "./_generated/dataModel";
 
 const populateUser = (ctx: QueryCtx, id: Id<"users">) => {
     return ctx.db.get(id);
-}
+};
 
 export const get = query({
     args: { workspaceId: v.id("workspaces") },
     handler: async (ctx, args) => {
         const userId = await auth.getUserId(ctx);
-
 
         if (!userId) {
             return [];
@@ -48,7 +47,7 @@ export const get = query({
             }
         }
 
-        return members
+        return members;
     },
 })
 

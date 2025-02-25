@@ -6,8 +6,7 @@ import { WorkspaceHeader } from "./workspace-header";
 import { SidebarItem } from "./sidebar-item";
 import { UseGetChannels, } from "@/features/channels/api/use-get-channels";
 import { WorkspaceSection } from "./workspace-section";
-import { UseGetMember } from "@/features/members/api/use-get-member";
-import { Item } from "@radix-ui/react-dropdown-menu";
+import { UseGetMembers } from "@/features/members/api/use-get-member";
 import { UserItem } from "./user-item";
 
 
@@ -18,7 +17,7 @@ export const WorkspaceSidebar = () => {
     const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId });
     const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId });
     const { data: channels, isLoading: channelsLoading } = UseGetChannels({ workspaceId });
-    const { data: members, isLoading: membersLoading } = UseGetMember({ workspaceId });
+    const { data: members, isLoading: membersLoading } = UseGetMembers({ workspaceId });
 
     if (workspaceLoading || memberLoading) {
         return (
@@ -74,14 +73,14 @@ export const WorkspaceSidebar = () => {
                 hint="New direct message"
                 onNew={() => { }}
             >
-                {members?.map(item) => (
+                {members?.map((item) => (
                 <UserItem
                     key={item._id}
                     id={item._id}
                     label={item.user.name}
-                    image={item.user.name}
+                    image={item.user.image}
                 />
-                )}
+            ))}
             </WorkspaceSection>
 
         </div>

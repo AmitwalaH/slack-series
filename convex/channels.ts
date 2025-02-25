@@ -30,5 +30,7 @@ export const get = query({
                 q.eq("workspaceId", args.workspaceId),
             )
             .collect();
+        
+        return channels;
     },
 })
