@@ -6,7 +6,7 @@ import {
     DialogTitle,
 
 } from "@/components/ui/dialog";
-import { useCreateWorkspaceModal } from "../workspaces/store/use-create-workspace-madal";
+import { useCreateWorkspaceModal } from "../workspaces/store/use-create-workspace-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCreateWorkspace } from "../workspaces/api/use-create-workspace";

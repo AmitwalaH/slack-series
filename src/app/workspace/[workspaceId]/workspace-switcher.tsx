@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
-import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-madal";
+import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-modal";
 
 import { Button } from "@/components/ui/button";
 import { useworkspaceId } from "@/hooks/use-workspace-id";
