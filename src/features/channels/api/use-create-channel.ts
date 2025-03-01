@@ -5,7 +5,7 @@ import { Doc, Id } from "../../../../convex/_generated/dataModel";
 import { useCallback, useMemo, useState } from "react";
 import { isDataView } from "util/types";
 
-type RequestType = { name: string ; workspaceId: Id<"workspaces">};
+type RequestType = { name: string; workspaceId: Id<"workspaces">};
 type ResponseType = Id<"channels"> | null;
 
 type Options = {
@@ -59,4 +59,4 @@ export const useCreateChannel = () => {
         isError,
         isSettled,
     };
-}
+};
