@@ -7,6 +7,7 @@ import {PiTextAa} from "react-icons/pi";
 import "quill/dist/quill.snow.css";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { EmojiPopover } from "./emoji-popover";
 import { Hint } from "./hint";
 import { current } from "../../convex/members";
 
@@ -126,6 +127,12 @@ const Editor = ({
                 toolbarElement.classList.toggle("hidden");
             }
         };
+
+        const onEmojiSelect = (emoji: any) => {
+            const quill = quillRef.current;
+
+                quill?.insertText(quill?.getSelection()?.index || 0, emoji.native);
+        };
         const isEmpty = text.replace(/<(.|\n)*?>/g, "").trim().length === 0;
 
     return (
@@ -143,16 +150,15 @@ const Editor = ({
                         <PiTextAa className="size-4" />
                     </Button>
                     </Hint>
-                    <Hint label="Emoji">
+                    <EmojiPopover onEmojiSelect={onEmojiSelect}>
                     <Button 
                         disabled={disabled}
                         size="iconSm"
                         variant="ghost"
-                        onClick={() => {}}
                     >
                         <Smile className="size-4" />
                     </Button>
-                    </Hint>
+                    </EmojiPopover>
                     {variant === "create" && (
                     <Hint label="Images">
 
@@ -197,14 +203,20 @@ const Editor = ({
                                   : "bg-[#007a5a] hover:bg-[#007a5a]/80 text-white"
                               )}
                             >
-                                                          <MdSend />
+                            <MdSend />
                         </Button>
                     )}
                 </div>
-            </div>   
-            <div className="p-2 text-[10px] text-muted-foreground flex justify-end">
+            </div>  
+            {variant === "create" && ( 
+            <div className={cn(
+                "p-2 text-[10px] text-muted-foreground flex justify-end opacity-0 transition",
+                !isEmpty && "opacity-100")}>
+                <p>
                 <strong>Shift + Return </strong> to add a new line
-            </div>   
+                </p>
+            </div>  
+            )} 
         </div>
     );
 };
