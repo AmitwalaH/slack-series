@@ -1,12 +1,14 @@
 "use client";
 import { Loader, TriangleAlert} from "lucide-react";
 import { UseGetChannel } from "@/features/channels/api/use-get-channel";
+import { useGetMessages } from "@/features/messages/api/use-get-messages";
 import { useChannelId } from "@/hooks/use-channel-id";
 import { Header } from "./header";
 import { ChatInput } from "./chat-input";
 
 const ChannelIdPage = () => {
     const channelId = useChannelId();
+    const getMessages = useGetMessages({ channelId });
 
     const { data: channel, isLoading: channelLoading} = UseGetChannel({ id: channelId});
 
