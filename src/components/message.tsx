@@ -2,10 +2,10 @@ import dayjs, { Dayjs } from "dayjs";
 import dynamic from "next/dynamic";
 import { toast } from "sonner";
 
-import { useRemoveMessage } from "@/features/messages/api/useRemoveMessage";
+import { useRemoveMessage } from "@/features/messages/api/use-remove-message";
 import { useUpdateMessage } from "@/features/messages/api/use-update-message";
 import { useToggleReaction } from "@/features/reactions/api/useToggleReaction";
-import { useConfirm } from "@/hooks/useConfirm";
+import { useConfirm } from "@/hooks/use-confirm";
 import { usePanel } from "@/hooks/usePanel";
 import { cn } from "@/lib/utils";
 import { Doc, Id } from "../../convex/_generated/dataModel";
