@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { useRemoveMessage } from "@/features/messages/api/use-remove-message";
 import { useUpdateMessage } from "@/features/messages/api/use-update-message";
-import { useToggleReaction } from "@/features/reactions/api/useToggleReaction";
+import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import { useConfirm } from "@/hooks/use-confirm";
 import { usePanel } from "@/hooks/usePanel";
 import { cn } from "@/lib/utils";
