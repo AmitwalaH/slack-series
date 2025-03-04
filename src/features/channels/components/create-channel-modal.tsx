@@ -9,14 +9,14 @@ import{
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 import { useCreateChannel } from "../api/use-create-channel";
 import { useCreateChannelModal } from "../store/use-create-channel-modal";
 import { useRouter } from "next/navigation";
 
 export const CreateChannelModal = () => {
-	 const workspaceId = useworkspaceId();
+	 const workspaceId = useWorkspaceId();
 	 const { mutate, isPending} = useCreateChannel();
      const [open, set0pen] = useCreateChannelModal() ;
 	 const router = useRouter();

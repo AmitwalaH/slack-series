@@ -13,11 +13,11 @@ import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 const JoinPage = () => {
     const router = useRouter();
-    const workspaceId = useworkspaceId();
+    const workspaceId = useWorkspaceId();
 
     const {mutate, isPending} = useJoin();
     const { data, isLoading} = useGetWorkspaceInfo({ id: workspaceId});

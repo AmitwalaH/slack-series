@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -34,7 +34,7 @@ export const SidebarItem = ({
     icon: Icon,
     variant,
 }: SidebarItemProps) => {
-    const workspaceId = useworkspaceId();
+    const workspaceId = useWorkspaceId();
 
     return (
         <Button

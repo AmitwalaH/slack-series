@@ -13,7 +13,7 @@ import { Trash } from "lucide-react";
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useConfirm } from "@/hooks/use-confirm";
@@ -30,7 +30,7 @@ export const PreferrencesModal = ({
     initialValue
 }: PreferrencesModalProps) => {
     const router = useRouter();
-    const workspaceId = useworkspaceId();
+    const workspaceId = useWorkspaceId();
     const [ConfirmDialog, confirm] = useConfirm(
         "Are you sure?",
         "This action is irreversible"

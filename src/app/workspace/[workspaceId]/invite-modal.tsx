@@ -5,7 +5,7 @@ import { useNewJoinCode } from "@/features/workspaces/api/use-new-join-code";
 
 import { Button } from "@/components/ui/button";
 import { useConfirm } from "@/hooks/use-confirm";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import{
 	Dialog,
     DialogClose,
@@ -26,7 +26,7 @@ export const InviteModal = ({
     setOpen,
     name,
     joinCode}: InviteModalProps) => {
-        const workspaceId = useworkspaceId();
+        const workspaceId = useWorkspaceId();
         const [ConfirmDialog, confirm] = useConfirm(
             "Are you sure?",
             "This will deactivate the current invite code and generate a new one"

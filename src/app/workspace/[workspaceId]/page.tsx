@@ -7,12 +7,12 @@ import { useCreateChannelModal } from "@/features/channels/store/use-create-chan
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useCurrentMember } from "@/features/members/api/use-current-member";
 import { UseGetChannels } from "@/features/channels/api/use-get-channels";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { useEffect, useMemo } from "react";
 
 const WorkspaceIdPage = () => {
     const router = useRouter();
-    const workspaceId = useworkspaceId();
+    const workspaceId = useWorkspaceId();
     const [open, setOpen] = useCreateChannelModal();
     const { data: member, isLoading: memberLoading } = useCurrentMember({workspaceId});
     const { data: workspace, isLoading: workspaceLoading} = useGetWorkspace({ id: workspaceId});

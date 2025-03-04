@@ -1,20 +1,21 @@
 "use client";
-import { Loader, TriangleAlert } from "lucide-react";
+
+import { AlertTriangle, Loader } from "lucide-react";
+
+import { MessageList } from "@/components/message-list";
 import { UseGetChannel } from "@/features/channels/api/use-get-channel";
 import { useGetMessages } from "@/features/messages/api/use-get-messages";
 import { useChannelId } from "@/hooks/use-channel-id";
-import { Header } from "./header";
 import { ChatInput } from "./chat-input";
+import { Header } from "./header";
 
-const ChannelIdPage = () => {
+const ChannelPage = () => {
   const channelId = useChannelId();
+
+  const getChannel = UseGetChannel({ id: channelId });
   const getMessages = useGetMessages({ channelId });
 
-  const { data: channel, isLoading: channelLoading } = UseGetChannel({
-    id: channelId,
-  });
-
-  if (channelLoading) {
+  if (getChannel.isLoading || getMessages.status === "LoadingFirstPage") {
     return (
       <div className="h-full flex-1 flex items-center justify-center">
         <Loader className="animate-spin size-5 text-muted-foreground" />
@@ -22,20 +23,18 @@ const ChannelIdPage = () => {
     );
   }
 
-  if (!channel) {
+  if (!getChannel.data) {
     return (
       <div className="h-full flex-1 flex flex-col gap-y-2 items-center justify-center">
-        <TriangleAlert className="animate-spin size-5 text-muted-foreground" />
-        <span className="animate-spin text-sm text-muted-foreground">
-          Channel not found
-        </span>
+        <AlertTriangle className="size-5 text-muted-foreground" />
+        <span className="text-muted-foreground text-sm">Channel not found</span>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col h-full">
-      <Header title={channel.name} />
+      <Header title={getChannel.data.name} />
       <MessageList
         channelName={getChannel.data.name}
         channelCreationTime={getChannel.data._creationTime}
@@ -44,9 +43,9 @@ const ChannelIdPage = () => {
         isLoadingMore={getMessages.status === "LoadingMore"}
         canLoadMore={getMessages.status === "CanLoadMore"}
       />
-      <ChatInput placeholder={`Message # ${channel.name}`} />
+      <ChatInput placeholder={`Message # ${getChannel.data.name}`} />
     </div>
   );
 };
 
-export default ChannelIdPage;
+export default ChannelPage;
