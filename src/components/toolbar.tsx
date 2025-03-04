@@ -1,91 +1,75 @@
-"use client";
+import { MessageSquareTextIcon, Pencil, Smile, Trash } from "lucide-react";
 
-import { Info, Search } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from "./ui/button";
+import { Hint } from "./hint";
+import { EmojiPopover } from "./emoji-popover";
 
-import { InDevelopmentHint } from "@/components/InDevelopmentHint";
-import { Button } from "@/components/ui/button";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/features/components/ui/command";
-import { UseGetChannels } from "@/features/channels/api/use-get-channels";
-import { UseGetMembers } from "@/features/members/api/use-get-members";
-import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
-import { Id } from "../../convex/_generated/dataModel";
+interface ToolbarProps {
+  isAuthor: boolean;
+  isPending: boolean;
+  hideThreadButton?: boolean;
+  onEdit: () => void;
+  onThread: () => void;
+  onDelete: () => void;
+  onReaction: (value: string) => void;
+}
 
-export const Toolbar = () => {
-  const router = useRouter();
-  const workspaceId = useWorkspaceId();
-
-  const { data: workspace } = useGetWorkspace({ id: workspaceId });
-  const getChannels = UseGetChannels({ workspaceId });
-  const getMembers = UseGetMembers({ workspaceId });
-
-  const [open, setOpen] = useState(false);
-
-  const handleChannelClick = (channelId: Id<"channels">) => () => {
-    setOpen(false);
-    router.push(`/workspace/${workspaceId}/channel/${channelId}`);
-  };
-
-  const handleMemberClick = (memberId: Id<"members">) => () => {
-    setOpen(false);
-    router.push(`/workspace/${workspaceId}/member/${memberId}`);
-  };
-
+export const Toolbar = ({
+  isAuthor,
+  isPending,
+  hideThreadButton,
+  onDelete,
+  onEdit,
+  onReaction,
+  onThread,
+}: ToolbarProps) => {
   return (
-    <div className="bg-[#481349] flex items-center justify-between h-10 p-1.5">
-      <div className="flex-1"></div>
-      <div className="min-w-[280px] max-[642px] grow-[2] shrink">
-        <Button
-          size="sm"
-          className="bg-accent/25 hover:bg-accent-25 w-full justify-start h-7 px-2"
-          onClick={() => setOpen(true)}
+    <div className="absolute top-0 right-5">
+      <div className="group-hover:opacity-100 opacity-0 transition-opacity border bg-white rounded-md shadow-sm">
+        <EmojiPopover
+          hint="Add reaction"
+          onEmojiSelect={(emoji) => onReaction(emoji)}
         >
-          <Search className="size-4 text-white mr-2" />
-          <span className="text-white text-xs">Search {workspace?.name}</span>
-        </Button>
-        <CommandDialog open={open} onOpenChange={setOpen}>
-          <CommandInput placeholder="Type a command or search..." />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Channels">
-              {getChannels.data?.map((channel) => (
-                <CommandItem
-                  key={channel._id}
-                  onSelect={handleChannelClick(channel._id)}
-                >
-                  {channel.name}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-            <CommandGroup heading="Members">
-              {getMembers.data?.map((member) => (
-                <CommandItem
-                  key={member._id}
-                  onSelect={handleMemberClick(member._id)}
-                >
-                  {member.user.name}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </CommandDialog>
-      </div>
-      <div className="ml-auto flex-1 flex items-center justify-end">
-        {/* TODO: Implement info button */}
-        <InDevelopmentHint>
-          <Button variant="transparent" size="iconSm" disabled>
-            <Info className="size-5 text-white" />
+          <Button size="iconSm" variant="ghost" disabled={isPending}>
+            <Smile className="size-4" />
           </Button>
-        </InDevelopmentHint>
+        </EmojiPopover>
+        {!hideThreadButton && (
+          <Hint label="Reply in thread">
+            <Button
+              size="iconSm"
+              variant="ghost"
+              disabled={isPending}
+              onClick={onThread}
+            >
+              <MessageSquareTextIcon className="size-4" />
+            </Button>
+          </Hint>
+        )}
+        {isAuthor && (
+          <Hint label="Edit message">
+            <Button
+              size="iconSm"
+              variant="ghost"
+              disabled={isPending}
+              onClick={onEdit}
+            >
+              <Pencil className="size-4" />
+            </Button>
+          </Hint>
+        )}
+        {isAuthor && (
+          <Hint label="Delete message">
+            <Button
+              size="iconSm"
+              variant="ghost"
+              disabled={isPending}
+              onClick={onDelete}
+            >
+              <Trash className="size-4" />
+            </Button>
+          </Hint>
+        )}
       </div>
     </div>
   );
