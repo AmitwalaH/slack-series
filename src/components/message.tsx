@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { Doc, Id } from "../../convex/_generated/dataModel";
 import { Hint } from "./hint";
 import { Reactions } from "./reactions";
-import { ThreadBar } from "./threadBar";
+import { ThreadBar } from "./thread-bar";
 import { Toolbar } from "./toolbar";
 import { Thumbnail } from "./thumbnail";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";

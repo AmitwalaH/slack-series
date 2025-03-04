@@ -9,7 +9,7 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import { ChannelHero } from "./channel-hero";
-import { ConversationHero } from "./ConversationHero";
+import { ConversationHero } from "./conversation-hero";
 import { Message } from "./message";
 
 dayjs.extend(isToday);
