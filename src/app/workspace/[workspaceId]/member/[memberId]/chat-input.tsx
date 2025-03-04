@@ -50,7 +50,11 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
       };
 
       if (image) {
-        const url = await generateUploadUrl.mutateAsyn({});
+        const url = await generateUploadUrl.mutateAsync({});
+
+        if (!url) {
+          throw new Error("Failed to get upload URL");
+        }
 
         const result = await fetch(url, {
           method: "POST",
@@ -59,16 +63,17 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
         });
 
         if (!result.ok) {
-          throw new Error("Failed to upload image");
+          throw new Error(`Upload failed: ${result.statusText}`);
         }
 
         const { storageId } = await result.json();
-
         values.image = storageId;
       }
+
       await createMessage.mutateAsync(values);
       setEditorKey((prev) => prev + 1);
     } catch (error) {
+      console.error("Error sending message:", error);
       toast.error("Failed to send message");
     } finally {
       setIsPending(false);
