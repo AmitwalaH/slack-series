@@ -13,9 +13,9 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { useGetChannels } from "@/features/channels/api/use-get-channels";
-import { useGetMembers } from "@/features/members/api/use-get-members";
+} from "@/features/components/ui/command";
+import { UseGetChannels } from "@/features/channels/api/use-get-channels";
+import { UseGetMembers } from "@/features/members/api/use-get-members";
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { Id } from "../../convex/_generated/dataModel";
@@ -25,8 +25,8 @@ export const Toolbar = () => {
   const workspaceId = useWorkspaceId();
 
   const { data: workspace } = useGetWorkspace({ id: workspaceId });
-  const getChannels = useGetChannels({ workspaceId });
-  const getMembers = useGetMembers({ workspaceId });
+  const getChannels = UseGetChannels({ workspaceId });
+  const getMembers = UseGetMembers({ workspaceId });
 
   const [open, setOpen] = useState(false);
 
