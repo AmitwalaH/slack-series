@@ -14,11 +14,11 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useGetChannels } from "@/features/channels/api/useGetChannels";
-import { useGetMembers } from "@/features/members/api/useGetMembers";
-import { useGetWorkspace } from "@/features/workspaces/api/useGetWorkspace";
-import { useWorkspaceId } from "@/hooks/useWorkspaceId";
-import { Id } from "../../../../convex/_generated/dataModel";
+import { useGetChannels } from "@/features/channels/api/use-get-channels";
+import { useGetMembers } from "@/features/members/api/use-get-members";
+import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
+import { Id } from "../../convex/_generated/dataModel";
 
 export const Toolbar = () => {
   const router = useRouter();

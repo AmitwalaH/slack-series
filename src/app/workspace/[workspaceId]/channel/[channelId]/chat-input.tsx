@@ -2,7 +2,7 @@ import Quill from "quill";
 import { useCreateMessage } from "@/features/messages/api/use-create-message";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { useworkspaceId } from "@/hooks/use-workspace-id";
+import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { useChannelId } from "@/hooks/use-channel-id";
 import { toast } from "sonner";
 import { Id } from "../../../../../../convex/_generated/dataModel";
@@ -25,7 +25,7 @@ export const ChatInput = ({ placeholder}: ChatInputProps) => {
   const editorRef = useRef<Quill | null>(null);
   const [isPending, setIsPending] = useState(false);
 
-  const workspaceId = useworkspaceId();
+  const workspaceId = useWorkspaceId();
   const channelId = useChannelId();
 
   const { mutate: generateUploadUrl} = useGenerateUploadUrl();

@@ -6,7 +6,7 @@ import { useRemoveMessage } from "@/features/messages/api/use-remove-message";
 import { useUpdateMessage } from "@/features/messages/api/use-update-message";
 import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import { useConfirm } from "@/hooks/use-confirm";
-import { usePanel } from "@/hooks/usePanel";
+import { usePanel } from "@/hooks/use-panel";
 import { cn } from "@/lib/utils";
 import { Doc, Id } from "../../convex/_generated/dataModel";
 import { Hint } from "./hint";
