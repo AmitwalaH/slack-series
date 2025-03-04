@@ -10,7 +10,7 @@ interface UseCreateOrGetConversationProps {
 }
 
 export const useCreateOrGetConversation = ({ memberId, workspaceId }: UseCreateOrGetConversationProps) => {
-  const mutation = useConvexMutation(api.conversation.createOrGet);
+  const mutation = useConvexMutation(api.conversations.createOrGet);
 
   const createOrGetConversation = useReactQuery({
     queryKey: ["createOrGetConversation"],
